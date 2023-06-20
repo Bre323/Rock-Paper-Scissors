@@ -3,3 +3,29 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header, footer {
+    background-color: beige;
+}
+
+header {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    padding: 25px;
+}
+
+main {
+    width: 100%;
+}
+
+.weapons div {
+    background-color: aqua;
+}
+
+footer {
+    font-weight: 700;
+    padding: 25px;
+    text-align: center;
+}
