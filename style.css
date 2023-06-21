@@ -66,15 +66,15 @@ main {
     gap: 50px;
 }
 
-.player-score p:first-child,
-.computer-score p:first-child {
+.score p:first-child,
+.score p:first-child {
     font-weight: 700;
     font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.player-score p:last-child,
-.computer-score p:last-child {
+.score p:last-child,
+.score p:last-child {
     font-weight: 500;
     font-size: 1.7rem;
 }
