@@ -4,12 +4,15 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 header, footer {
     background-color: beige;
 }
 
 header {
-    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 24px;
     text-align: center;
@@ -17,11 +20,63 @@ header {
 }
 
 main {
+    background-color: rgb(81, 69, 0);
+    color: white;
+    height: 100vh;
     width: 100%;
+    text-align: center;
 }
 
-.weapons div {
-    background-color: aqua;
+.main-text {
+    padding-top: 50px;
+}
+
+.main-text h2 {
+    margin-bottom: 10px;
+    font-size: 1.9rem;
+}
+
+.weapons {
+    margin: 50px 0;
+}
+
+.weapons button {
+    background-color: beige;
+    margin: 0 20px;
+    height: 80px;
+    width: 80px;
+    border: none;
+    border-radius: 25px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.weapons button:hover {
+    opacity: 0.8;
+}
+
+.weapons button:active {
+    transform: scale(0.85);
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.player-score p:first-child,
+.computer-score p:first-child {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.player-score p:last-child,
+.computer-score p:last-child {
+    font-weight: 500;
+    font-size: 1.7rem;
 }
 
 footer {
