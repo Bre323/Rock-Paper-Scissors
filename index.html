@@ -29,20 +29,32 @@
 
             <div class="result">
                 <div class="score">
-                    <p>Player</p>
-                    <p id="player-points">0</p>
+                    <p>Player: <span id="player-points">0</span></p>
+                    <div id="player-sign" class="sign"></div>
                 </div>
 
                 <div class="score">
-                    <p>Computer</p>
-                    <p id="computer-points">0</p>
+                    <p>Computer: <span id="computer-points">0</span></p>
+                    <div id="computer-sign" class="sign"></div>
                 </div>
+            </div>
+
+            <div class="score-message">
+                <h2 id="score-header"></h2>
+                <p id="score-text"></p>
             </div>
         </main>
 
         <footer>
             Copyright &copy; The Odin Project 2021
         </footer>
+
+        
+        <div class="modal">
+            <p class="modal-message">You Won!</p>
+            <button id="restart-button">Play again</button>
+        </div>
+        <div class="overlay"></div>
 
         <script src="./script.js"></script>
     </body>
