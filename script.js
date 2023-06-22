@@ -5,8 +5,12 @@ let scoreText = document.getElementById('score-text');
 let rockButton = document.getElementById('rock');
 let paperButton = document.getElementById('paper');
 let scissorsButton = document.getElementById('scissors');
+let restartButton = document.getElementById('restart-button');
 let playerSign = document.getElementById('player-sign');
 let computerSign = document.getElementById('computer-sign');
+let modal = document.getElementById('modal');
+let modalMessage = document.getElementById('modal-message');
+let overlay = document.getElementById('overlay');
 let playerScore = 0;
 let computerScore = 0;
 let roundWinner = '';
@@ -14,10 +18,37 @@ let roundWinner = '';
 rockButton.addEventListener('click', () => playRound('rock'));
 paperButton.addEventListener('click', () => playRound('paper'));
 scissorsButton.addEventListener('click', () => playRound('scissors'));
+restartButton.addEventListener('click', () => restartGame());
 
 
 function isGameOver() {
     return playerScore === 5 || computerScore === 5;
+}
+
+function openModal() {
+    modal.classList.add('active');
+    overlay.classList.add('active');
+    
+    if(playerScore > computerScore) {
+        modalMessage.textContent = 'You Won!';
+    }
+    else {
+        modalMessage.textContent = 'You Lose!';
+    }
+}
+
+function restartGame() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+
+    playerScore = 0;
+    computerScore = 0;
+    playerPoints.textContent = 0;
+    computerPoints.textContent = 0;
+    playerSign.textContent = '';
+    computerSign.textContent = '';
+    scoreHeader.textContent = '';
+    scoreText.textContent = '';
 }
 
 function getChoices(choice) {
@@ -64,4 +95,8 @@ function playRound(playerChoice) {
 
     playerSign.textContent = getChoices(playerChoice);
     computerSign.textContent = getChoices(computerChoice);
+
+    if(isGameOver()) {
+        openModal();
+    }
 }

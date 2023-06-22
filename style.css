@@ -138,3 +138,8 @@ footer {
 #restart-button:active {
     transform: scale(0.85);
 }
+
+.active {
+    display: block;
+    transform: scale(1);
+}
