@@ -1,3 +1,5 @@
+import '../styles/Game.css';
+
 const Game: React.FC = () => {
   return (
     <>

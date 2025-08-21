@@ -1,3 +1,5 @@
+import '../styles/Modal.css';
+
 const Modal: React.FC = () => {
   return (
     <>
