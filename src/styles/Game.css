@@ -1,9 +1,10 @@
 header, footer {
     background-color: beige;
+    color: rgb(81, 69, 0);
+    text-align: center;
 }
 
 header {
-    font-weight: 700;
     font-size: 24px;
     text-align: center;
     padding: 25px;
@@ -11,7 +12,7 @@ header {
 
 main {
     background-color: rgb(81, 69, 0);
-    color: white;
+    color: beige;
     height: 100vh;
     width: 100%;
     text-align: center;
@@ -77,4 +78,8 @@ main {
 
 #score-header {
     margin-bottom: 15px;
+}
+
+footer {
+    padding: 20px 0;
 }
