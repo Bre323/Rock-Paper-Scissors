@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import Game from './components/Game';
-//import Modal from './components/Modal';
-//import Overlay from './components/Overlay';
+import Modal from './components/Modal';
+import Overlay from './components/Overlay';
 import './App.css';
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [weapon, setWeapon] = useState('');
+
+  function playRound(playerChoice: string): void {}
 
   return (
     <>
-      <Game />
+      <Game playRound={playRound}/>
+      <Modal />
+      <Overlay />
     </>
   )
 }

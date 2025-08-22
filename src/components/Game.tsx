@@ -1,6 +1,10 @@
 import '../styles/Game.css';
 
-const Game: React.FC = () => {
+interface GameProps {
+  playRound: (playerChoice: string) => void;
+}
+
+const Game: React.FC<GameProps> = ({ playRound }) => {
   return (
     <>
       <header>
@@ -14,9 +18,9 @@ const Game: React.FC = () => {
         </div>
 
         <div className="weapons">
-            <button id="rock" className="rock">👊</button>
-            <button id="paper" className="paper">🤚</button>
-            <button id="scissors" className="scissors">✌️</button>
+            <button id="rock" className="rock" onClick={() => playRound('👊')}>👊</button>
+            <button id="paper" className="paper" onClick={() => playRound('🤚')}>🤚</button>
+            <button id="scissors" className="scissors" onClick={() => playRound('✌️')}>✌️</button>
         </div>
 
         <div className="result">
