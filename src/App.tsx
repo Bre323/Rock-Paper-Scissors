@@ -8,7 +8,42 @@ import './App.css';
 function App() {
   const [weapon, setWeapon] = useState('');
 
-  function playRound(playerChoice: string): void {}
+  function playRound(playerChoice: string): void {
+    let options = ['rock', 'paper', 'scissors'];
+    const randomValue = Math.floor(Math.random() * 3);
+    const computerChoice = options[randomValue];
+    let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
+    let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
+    let playerPoints = document.getElementById('player-points') as HTMLSpanElement;
+    let computerPoints = document.getElementById('computer-points') as HTMLSpanElement;
+    let playerScore = 0;
+    let computerScore = 0;
+
+    if(playerChoice === computerChoice) {
+        scoreHeader.textContent = 'TIE';
+        scoreText.textContent = '';
+    }
+    if(
+        (playerChoice === 'rock' && computerChoice === 'scissors') || 
+        (playerChoice === 'paper' && computerChoice === 'rock') || 
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        playerScore++;
+        playerPoints.textContent = `${playerScore}`;
+        scoreHeader.textContent = 'VICTORY';
+        scoreText.textContent = `${playerChoice} beats ${computerChoice}`;
+    }
+     if(
+        (computerChoice === 'rock' && playerChoice === 'scissors') || 
+        (computerChoice === 'paper' && playerChoice === 'rock') || 
+        (computerChoice === 'scissors' && playerChoice === 'paper')
+    ) {
+        computerScore++;
+        computerPoints.textContent = `${computerScore}`;
+        scoreHeader.textContent = 'DEFEAT';
+        scoreText.textContent = `${playerChoice} can't beat ${computerChoice}`;
+    }
+  }
 
   return (
     <>

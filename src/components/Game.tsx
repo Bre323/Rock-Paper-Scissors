@@ -18,9 +18,9 @@ const Game: React.FC<GameProps> = ({ playRound }) => {
         </div>
 
         <div className="weapons">
-            <button id="rock" className="rock" onClick={() => playRound('👊')}>👊</button>
-            <button id="paper" className="paper" onClick={() => playRound('🤚')}>🤚</button>
-            <button id="scissors" className="scissors" onClick={() => playRound('✌️')}>✌️</button>
+            <button id="rock" className="rock" onClick={() => playRound('rock')}>👊</button>
+            <button id="paper" className="paper" onClick={() => playRound('paper')}>🤚</button>
+            <button id="scissors" className="scissors" onClick={() => playRound('scissors')}>✌️</button>
         </div>
 
         <div className="result">
