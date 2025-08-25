@@ -12,12 +12,26 @@ function App() {
   const [computerChoice, setComputerChoice] = useState('');
 
 
+  function getChoices(choice: string) {
+    switch(choice) {
+      case 'rock':
+        return '👊';
+      case 'paper':
+        return '🤚';
+      case 'scissors':
+        return '✌️';
+      default:
+        return '';
+    }
+  }
+
   function playRound(choice: string): void {
     let options = ['rock', 'paper', 'scissors'];
     const randomValue = Math.floor(Math.random() * 3);
-    //const computerChoice = options[randomValue];
     let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
     let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
+    let playerSign = document.getElementById('player-sign') as HTMLSpanElement;
+    let computerSign = document.getElementById('computer-sign') as HTMLSpanElement;
     setPlayerChoice(choice);
     setComputerChoice(options[randomValue]);
 
@@ -44,6 +58,9 @@ function App() {
         scoreHeader.textContent = 'DEFEAT';
         scoreText.textContent = `${playerChoice} can't beat ${computerChoice}`;
     }
+
+    playerSign.textContent = getChoices(playerChoice);
+    computerSign.textContent = getChoices(computerChoice);
   }
 
   return (
