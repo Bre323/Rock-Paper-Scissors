@@ -1,7 +1,7 @@
 import '../styles/Game.css';
 
 interface GameProps {
-  playRound: (playerChoice: string) => void;
+  playRound: (choice: string) => void;
   playerScore: number;
   computerScore: number;
 }

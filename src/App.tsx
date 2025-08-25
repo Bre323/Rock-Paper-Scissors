@@ -7,16 +7,20 @@ import './App.css';
 
 function App() {
   const [playerScore, setPlayerScore] = useState(0);
+  const [playerChoice, setPlayerChoice] = useState('');
   const [computerScore, setComputerScore] = useState(0);
+  const [computerChoice, setComputerChoice] = useState('');
 
 
-  function playRound(playerChoice: string): void {
+  function playRound(choice: string): void {
     let options = ['rock', 'paper', 'scissors'];
     const randomValue = Math.floor(Math.random() * 3);
-    const computerChoice = options[randomValue];
+    //const computerChoice = options[randomValue];
     let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
     let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
-    
+    setPlayerChoice(choice);
+    setComputerChoice(options[randomValue]);
+
 
     if(playerChoice === computerChoice) {
         scoreHeader.textContent = 'TIE';
