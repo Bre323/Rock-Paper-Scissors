@@ -6,7 +6,9 @@ import './App.css';
 
 
 function App() {
-  const [weapon, setWeapon] = useState('');
+  const [playerScore, setPlayerScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
+
 
   function playRound(playerChoice: string): void {
     let options = ['rock', 'paper', 'scissors'];
@@ -14,10 +16,7 @@ function App() {
     const computerChoice = options[randomValue];
     let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
     let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
-    let playerPoints = document.getElementById('player-points') as HTMLSpanElement;
-    let computerPoints = document.getElementById('computer-points') as HTMLSpanElement;
-    let playerScore = 0;
-    let computerScore = 0;
+    
 
     if(playerChoice === computerChoice) {
         scoreHeader.textContent = 'TIE';
@@ -28,8 +27,7 @@ function App() {
         (playerChoice === 'paper' && computerChoice === 'rock') || 
         (playerChoice === 'scissors' && computerChoice === 'paper')
     ) {
-        playerScore++;
-        playerPoints.textContent = `${playerScore}`;
+        setPlayerScore(prevScore => prevScore + 1);
         scoreHeader.textContent = 'VICTORY';
         scoreText.textContent = `${playerChoice} beats ${computerChoice}`;
     }
@@ -38,8 +36,7 @@ function App() {
         (computerChoice === 'paper' && playerChoice === 'rock') || 
         (computerChoice === 'scissors' && playerChoice === 'paper')
     ) {
-        computerScore++;
-        computerPoints.textContent = `${computerScore}`;
+        setComputerScore(prevScore => prevScore + 1);
         scoreHeader.textContent = 'DEFEAT';
         scoreText.textContent = `${playerChoice} can't beat ${computerChoice}`;
     }
@@ -47,7 +44,7 @@ function App() {
 
   return (
     <>
-      <Game playRound={playRound}/>
+      <Game playRound={playRound} playerScore={playerScore} computerScore={computerScore}/>
       <Modal />
       <Overlay />
     </>

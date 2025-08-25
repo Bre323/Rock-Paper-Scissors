@@ -2,9 +2,11 @@ import '../styles/Game.css';
 
 interface GameProps {
   playRound: (playerChoice: string) => void;
+  playerScore: number;
+  computerScore: number;
 }
 
-const Game: React.FC<GameProps> = ({ playRound }) => {
+const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore }) => {
   return (
     <>
       <header>
@@ -25,12 +27,12 @@ const Game: React.FC<GameProps> = ({ playRound }) => {
 
         <div className="result">
             <div className="score">
-                <p>Player: <span id="player-points">0</span></p>
+                <p>Player: <span id="player-points">{playerScore}</span></p>
                 <div id="player-sign" className="sign"></div>
             </div>
 
             <div className="score">
-                <p>Computer: <span id="computer-points">0</span></p>
+                <p>Computer: <span id="computer-points">{computerScore}</span></p>
                 <div id="computer-sign" className="sign"></div>
             </div>
         </div>
