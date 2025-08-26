@@ -12,6 +12,26 @@ function App() {
   const [computerChoice, setComputerChoice] = useState('');
 
 
+  function isGameOver() {
+    return playerScore === 5 || computerScore === 5;
+  }
+
+  function openModal() {
+    let modal = document.getElementById('modal') as HTMLDivElement;
+    let modalMessage = document.getElementById('modal-message') as HTMLParagraphElement;
+    let overlay = document.getElementById('overlay') as HTMLDivElement;
+
+    modal.classList.add('active');
+    overlay.classList.add('active');
+
+    if(playerScore > computerScore) {
+        modalMessage.textContent = 'You Won!';
+    }
+    else {
+        modalMessage.textContent = 'You Lost!';
+    }
+  }
+
   function getChoices(choice: string) {
     switch(choice) {
       case 'rock':
@@ -61,6 +81,10 @@ function App() {
 
     playerSign.textContent = getChoices(playerChoice);
     computerSign.textContent = getChoices(computerChoice);
+
+    if(isGameOver()) {
+        openModal();
+    }
   }
 
   return (
