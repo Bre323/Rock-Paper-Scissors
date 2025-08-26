@@ -4,9 +4,11 @@ interface GameProps {
   playRound: (choice: string) => void;
   playerScore: number;
   computerScore: number;
+  playerWeapon: string;
+  computerWeapon: string;
 }
 
-const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore }) => {
+const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore, playerWeapon, computerWeapon }) => {
   return (
     <>
       <header>
@@ -28,12 +30,12 @@ const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore }) =>
         <div className="result">
             <div className="score">
                 <p>Player: <span id="player-points">{playerScore}</span></p>
-                <div id="player-sign" className="sign"></div>
+                <div id="player-sign" className="sign">{playerWeapon}</div>
             </div>
 
             <div className="score">
                 <p>Computer: <span id="computer-points">{computerScore}</span></p>
-                <div id="computer-sign" className="sign"></div>
+                <div id="computer-sign" className="sign">{computerWeapon}</div>
             </div>
         </div>
 

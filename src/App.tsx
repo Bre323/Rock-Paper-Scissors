@@ -8,8 +8,10 @@ import './App.css';
 function App() {
   const [playerScore, setPlayerScore] = useState(0);
   const [playerChoice, setPlayerChoice] = useState('');
+  const [playerWeapon, setPlayerWeapon] = useState('');
   const [computerScore, setComputerScore] = useState(0);
   const [computerChoice, setComputerChoice] = useState('');
+  const [computerWeapon, setComputerWeapon] = useState('');
   let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
   let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
   let playerSign = document.getElementById('player-sign') as HTMLSpanElement;
@@ -65,6 +67,8 @@ function App() {
     const randomValue = Math.floor(Math.random() * 3);
     setPlayerChoice(choice);
     setComputerChoice(options[randomValue]);
+    setPlayerWeapon(getChoices(choice));
+    setComputerWeapon(getChoices(options[randomValue]));
 
 
     if(playerChoice === computerChoice) {
@@ -90,9 +94,6 @@ function App() {
         scoreText.textContent = `${playerChoice} can't beat ${computerChoice}`;
     }
 
-    playerSign.textContent = getChoices(playerChoice);
-    computerSign.textContent = getChoices(computerChoice);
-
     if(isGameOver()) {
         openModal();
     }
@@ -100,7 +101,13 @@ function App() {
 
   return (
     <>
-      <Game playRound={playRound} playerScore={playerScore} computerScore={computerScore}/>
+      <Game 
+        playRound={playRound} 
+        playerScore={playerScore} 
+        computerScore={computerScore}
+        playerWeapon={playerWeapon}
+        computerWeapon={computerWeapon}
+      />
       <Modal restartGame={restartGame} />
       <Overlay />
     </>
