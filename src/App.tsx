@@ -10,6 +10,13 @@ function App() {
   const [playerChoice, setPlayerChoice] = useState('');
   const [computerScore, setComputerScore] = useState(0);
   const [computerChoice, setComputerChoice] = useState('');
+  let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
+  let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
+  let playerSign = document.getElementById('player-sign') as HTMLSpanElement;
+  let computerSign = document.getElementById('computer-sign') as HTMLSpanElement;
+  let modal = document.getElementById('modal') as HTMLDivElement;
+  let modalMessage = document.getElementById('modal-message') as HTMLParagraphElement;
+  let overlay = document.getElementById('overlay') as HTMLDivElement;
 
 
   function isGameOver() {
@@ -17,10 +24,6 @@ function App() {
   }
 
   function openModal() {
-    let modal = document.getElementById('modal') as HTMLDivElement;
-    let modalMessage = document.getElementById('modal-message') as HTMLParagraphElement;
-    let overlay = document.getElementById('overlay') as HTMLDivElement;
-
     modal.classList.add('active');
     overlay.classList.add('active');
 
@@ -30,6 +33,18 @@ function App() {
     else {
         modalMessage.textContent = 'You Lost!';
     }
+  }
+
+  function restartGame() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+
+    setPlayerScore(0);
+    setComputerScore(0);
+    playerSign.textContent = '';
+    computerSign.textContent = '';
+    scoreHeader.textContent = '';
+    scoreText.textContent = '';
   }
 
   function getChoices(choice: string) {
@@ -48,10 +63,6 @@ function App() {
   function playRound(choice: string): void {
     let options = ['rock', 'paper', 'scissors'];
     const randomValue = Math.floor(Math.random() * 3);
-    let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
-    let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
-    let playerSign = document.getElementById('player-sign') as HTMLSpanElement;
-    let computerSign = document.getElementById('computer-sign') as HTMLSpanElement;
     setPlayerChoice(choice);
     setComputerChoice(options[randomValue]);
 
@@ -90,7 +101,7 @@ function App() {
   return (
     <>
       <Game playRound={playRound} playerScore={playerScore} computerScore={computerScore}/>
-      <Modal />
+      <Modal restartGame={restartGame} />
       <Overlay />
     </>
   )

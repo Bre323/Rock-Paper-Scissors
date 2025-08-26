@@ -1,11 +1,15 @@
 import '../styles/Modal.css';
 
-const Modal: React.FC = () => {
+interface ModalProps {
+  restartGame: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ restartGame }) => {
   return (
     <>
       <div id="modal" className="modal">
         <p id="modal-message" className="modal-message">You Won!</p>
-        <button id="restart-button">Play again</button>
+        <button id="restart-button" onClick={restartGame}>Play again</button>
       </div>
     </>
   );
