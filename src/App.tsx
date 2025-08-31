@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Game from './components/Game';
 import Modal from './components/Modal';
 import Overlay from './components/Overlay';
@@ -20,6 +20,12 @@ function App() {
   let modalMessage = document.getElementById('modal-message') as HTMLParagraphElement;
   let overlay = document.getElementById('overlay') as HTMLDivElement;
 
+
+  useEffect(() => {
+    if(isGameOver()) {
+      openModal();
+    }
+  }, [playerScore, computerScore]);
 
   function isGameOver() {
     return playerScore === 5 || computerScore === 5;
@@ -93,10 +99,6 @@ function App() {
         setComputerScore(computerScore + 1);
         setScoreHeader('DEFEAT');
         setScoreText(`${choice} can't beat ${chosenOption}`);
-    }
-
-    if(isGameOver()) {
-        openModal();
     }
   }
 
