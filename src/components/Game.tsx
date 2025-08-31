@@ -6,9 +6,21 @@ interface GameProps {
   computerScore: number;
   playerWeapon: string;
   computerWeapon: string;
+  scoreHeader: string;
+  scoreText: string;
 }
 
-const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore, playerWeapon, computerWeapon }) => {
+const Game: React.FC<GameProps> = (
+  { 
+    playRound, 
+    playerScore, 
+    computerScore, 
+    playerWeapon, 
+    computerWeapon, 
+    scoreHeader, 
+    scoreText 
+  }
+) => {
   return (
     <>
       <header>
@@ -40,8 +52,8 @@ const Game: React.FC<GameProps> = ({ playRound, playerScore, computerScore, play
         </div>
 
         <div className="score-message">
-            <h2 id="score-header"></h2>
-            <p id="score-text"></p>
+            <h2 id="score-header">{scoreHeader}</h2>
+            <p id="score-text">{scoreText}</p>
         </div>
       </main>
 

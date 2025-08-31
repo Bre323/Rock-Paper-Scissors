@@ -12,8 +12,8 @@ function App() {
   const [computerScore, setComputerScore] = useState(0);
   const [computerChoice, setComputerChoice] = useState('');
   const [computerWeapon, setComputerWeapon] = useState('');
-  let scoreHeader = document.getElementById('score-header') as HTMLHeadingElement;
-  let scoreText = document.getElementById('score-text') as HTMLParagraphElement;
+  const [scoreHeader, setScoreHeader] = useState('');
+  const [scoreText, setScoreText] = useState('');
   let playerSign = document.getElementById('player-sign') as HTMLSpanElement;
   let computerSign = document.getElementById('computer-sign') as HTMLSpanElement;
   let modal = document.getElementById('modal') as HTMLDivElement;
@@ -43,10 +43,10 @@ function App() {
 
     setPlayerScore(0);
     setComputerScore(0);
+    setScoreHeader('');
+    setScoreText('');
     playerSign.textContent = '';
     computerSign.textContent = '';
-    scoreHeader.textContent = '';
-    scoreText.textContent = '';
   }
 
   function getChoices(choice: string) {
@@ -65,33 +65,34 @@ function App() {
   function playRound(choice: string): void {
     let options = ['rock', 'paper', 'scissors'];
     const randomValue = Math.floor(Math.random() * 3);
+    const chosenOption = options[randomValue];
     setPlayerChoice(choice);
-    setComputerChoice(options[randomValue]);
+    setComputerChoice(chosenOption);
     setPlayerWeapon(getChoices(choice));
-    setComputerWeapon(getChoices(options[randomValue]));
+    setComputerWeapon(getChoices(chosenOption));
 
 
-    if(playerChoice === computerChoice) {
-        scoreHeader.textContent = 'TIE';
-        scoreText.textContent = '';
+    if(choice === chosenOption) {
+        setScoreHeader('TIE');
+        setScoreText('');
     }
     if(
-        (playerChoice === 'rock' && computerChoice === 'scissors') || 
-        (playerChoice === 'paper' && computerChoice === 'rock') || 
-        (playerChoice === 'scissors' && computerChoice === 'paper')
+        (choice === 'rock' && chosenOption === 'scissors') || 
+        (choice === 'paper' && chosenOption === 'rock') || 
+        (choice === 'scissors' && chosenOption === 'paper')
     ) {
-        setPlayerScore(prevScore => prevScore + 1);
-        scoreHeader.textContent = 'VICTORY';
-        scoreText.textContent = `${playerChoice} beats ${computerChoice}`;
+        setPlayerScore(playerScore + 1);
+        setScoreHeader('VICTORY');
+        setScoreText(`${choice} beats ${chosenOption}`);
     }
      if(
-        (computerChoice === 'rock' && playerChoice === 'scissors') || 
-        (computerChoice === 'paper' && playerChoice === 'rock') || 
-        (computerChoice === 'scissors' && playerChoice === 'paper')
+        (chosenOption === 'rock' && choice === 'scissors') || 
+        (chosenOption === 'paper' && choice === 'rock') || 
+        (chosenOption === 'scissors' && choice === 'paper')
     ) {
-        setComputerScore(prevScore => prevScore + 1);
-        scoreHeader.textContent = 'DEFEAT';
-        scoreText.textContent = `${playerChoice} can't beat ${computerChoice}`;
+        setComputerScore(computerScore + 1);
+        setScoreHeader('DEFEAT');
+        setScoreText(`${choice} can't beat ${chosenOption}`);
     }
 
     if(isGameOver()) {
@@ -107,6 +108,8 @@ function App() {
         computerScore={computerScore}
         playerWeapon={playerWeapon}
         computerWeapon={computerWeapon}
+        scoreHeader={scoreHeader}
+        scoreText={scoreText}
       />
       <Modal restartGame={restartGame} />
       <Overlay />
