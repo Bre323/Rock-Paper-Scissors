@@ -7,10 +7,8 @@ import './App.css';
 
 function App() {
   const [playerScore, setPlayerScore] = useState(0);
-  const [playerChoice, setPlayerChoice] = useState('');
   const [playerWeapon, setPlayerWeapon] = useState('');
   const [computerScore, setComputerScore] = useState(0);
-  const [computerChoice, setComputerChoice] = useState('');
   const [computerWeapon, setComputerWeapon] = useState('');
   const [scoreHeader, setScoreHeader] = useState('');
   const [scoreText, setScoreText] = useState('');
@@ -71,34 +69,32 @@ function App() {
   function playRound(choice: string): void {
     let options = ['rock', 'paper', 'scissors'];
     const randomValue = Math.floor(Math.random() * 3);
-    const chosenOption = options[randomValue];
-    setPlayerChoice(choice);
-    setComputerChoice(chosenOption);
+    const computerChoice = options[randomValue];
     setPlayerWeapon(getChoices(choice));
-    setComputerWeapon(getChoices(chosenOption));
+    setComputerWeapon(getChoices(computerChoice));
 
 
-    if(choice === chosenOption) {
+    if(choice === computerChoice) {
         setScoreHeader('TIE');
         setScoreText('');
     }
     if(
-        (choice === 'rock' && chosenOption === 'scissors') || 
-        (choice === 'paper' && chosenOption === 'rock') || 
-        (choice === 'scissors' && chosenOption === 'paper')
+        (choice === 'rock' && computerChoice === 'scissors') || 
+        (choice === 'paper' && computerChoice === 'rock') || 
+        (choice === 'scissors' && computerChoice === 'paper')
     ) {
         setPlayerScore(playerScore + 1);
         setScoreHeader('VICTORY');
-        setScoreText(`${choice} beats ${chosenOption}`);
+        setScoreText(`${choice} beats ${computerChoice}`);
     }
      if(
-        (chosenOption === 'rock' && choice === 'scissors') || 
-        (chosenOption === 'paper' && choice === 'rock') || 
-        (chosenOption === 'scissors' && choice === 'paper')
+        (computerChoice === 'rock' && choice === 'scissors') || 
+        (computerChoice === 'paper' && choice === 'rock') || 
+        (computerChoice === 'scissors' && choice === 'paper')
     ) {
         setComputerScore(computerScore + 1);
         setScoreHeader('DEFEAT');
-        setScoreText(`${choice} can't beat ${chosenOption}`);
+        setScoreText(`${choice} can't beat ${computerChoice}`);
     }
   }
 
